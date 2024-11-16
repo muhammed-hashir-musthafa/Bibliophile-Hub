@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { addBook } from '../utils/api';
+import toast from 'react-hot-toast';
 
 const AddBook = ({ onBookAdded }) => {
   const validationSchema = Yup.object({
@@ -13,6 +14,7 @@ const AddBook = ({ onBookAdded }) => {
   const handleSubmit = async (values, { resetForm }) => {
     try {
       await addBook(values);
+      toast.success("Book Added Successfully")
       resetForm();
       onBookAdded();
     } catch (error) {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getBooks, deleteBook } from '../utils/api';
+import toast from 'react-hot-toast';
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -16,6 +17,8 @@ const BookList = () => {
   const handleDelete = async (id) => {
     try {
       await deleteBook(id);
+      toast.error("Book Deleted Successfully")
+      
       fetchBooks();
     } catch (error) {
       console.error('Error deleting book:', error);
